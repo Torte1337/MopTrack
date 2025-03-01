@@ -1,11 +1,15 @@
-﻿namespace MopTrack;
+﻿using MopTrack.Manager;
+
+namespace MopTrack;
 
 public partial class App : Application
 {
-	public App()
+	private readonly DatabaseManager mgr;
+	public App(DatabaseManager dbManager)
 	{
 		InitializeComponent();
-
+		mgr = dbManager;
+		Task.Run(async () => await OnCheckDatabase());
 
 #if ANDROID
 	Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry),(handler,view) => 
@@ -22,9 +26,11 @@ public partial class App : Application
 		platformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
 	});
 #endif
+	}
 
-
-
+	private async Task OnCheckDatabase()
+	{
+		await mgr.OnCheck();
 	}
 
 	protected override Window CreateWindow(IActivationState? activationState)

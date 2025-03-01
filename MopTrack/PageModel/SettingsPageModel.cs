@@ -23,7 +23,7 @@ public partial class SettingsPageModel : ObservableObject
     }
 
     [RelayCommand]
-    private async void OnButtonUserManagement()
+    private async Task OnButtonUserManagement()
     {
         await Shell.Current.GoToAsync("//UserPage");
     }

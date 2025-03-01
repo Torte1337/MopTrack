@@ -21,15 +21,14 @@
     <Tab Title="Objekte" Route="ObjectPage">
         <ShellContent ContentTemplate="{DataTemplate pages:ObjectPage}"/>
     </Tab>
-    <!-- <Tab Title="Export" Route="ExportPae">
-        <ShellContent ContentTemplate="{DataTemplate pages:ExportPage}"/>
-    </Tab> -->
+    <Tab Title="Benutzer" Route="UserPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:UserPage}"/>
+    </Tab>
     <Tab Title="Einstellungen" Route="SettingsPage">
         <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
     </Tab>
 </TabBar>
 
-<ShellContent Route="UserPage" ContentTemplate="{DataTemplate pages:UserPage}"/>
 
 
 

@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MopTrack.Page.Views.User.CreateUserView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="MopTrack.Page.Views.User.CreateUserView"
+             xmlns:pm="clr-namespace:MopTrack.PageModel">
+
+        <Border WidthRequest="400" x:DataType="pm:UserPageModel"
+                StrokeShape="RoundRectangle 20,20,20,20"
+                BackgroundColor="#00ADFF" Margin="10" Padding="20">
+
+                <VerticalStackLayout VerticalOptions="Center" Spacing="10">
+
+                    <Frame HorizontalOptions="Center" Padding="10,5" WidthRequest="300" HeightRequest="40">
+                        <Entry Placeholder="Vorname..." WidthRequest="300" HeightRequest="40" Text="{Binding FirstnameField}"/>
+                    </Frame>
+
+                    <Frame HorizontalOptions="Center" Padding="10,5" WidthRequest="300" HeightRequest="40">
+                        <Entry Placeholder="Nachname..." WidthRequest="300" HeightRequest="40" Text="{Binding SurnameField}"/>
+                    </Frame>
+
+                    <Frame HorizontalOptions="Center" Padding="10,5" WidthRequest="300" HeightRequest="40">
+                        <Entry Keyboard="Numeric" Placeholder="Tägliche Arbeitszeit..." WidthRequest="300" HeightRequest="40" Text="{Binding DailyworktimeField}"/>
+                    </Frame>
+
+                    <Frame HorizontalOptions="Center" Padding="10,5" WidthRequest="300" HeightRequest="40">
+                        <Entry Keyboard="Numeric" Placeholder="Urlaubstage" WidthRequest="300" HeightRequest="40" Text="{Binding VacationsField}"/>
+                    </Frame>
+
+                    <Frame HorizontalOptions="Center" Padding="10,5" WidthRequest="300" HeightRequest="40">
+                        <Button Text="Unterschrift auswählen" WidthRequest="300" HeightRequest="40" BackgroundColor="#001925" Command="{Binding ButtonSearchSignaturCommand}"/>
+                    </Frame>
+
+                    <Frame HorizontalOptions="Center" Padding="10,5" WidthRequest="300" HeightRequest="40">
+                        <Button Text="Speichern" WidthRequest="300" HeightRequest="40" BackgroundColor="#001925" Command="{Binding ButtonSaveNewUserCommand}"/>
+                    </Frame>
+
+
+
+                </VerticalStackLayout>
+
+        </Border>
 </ContentView>

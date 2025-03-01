@@ -12,14 +12,23 @@ public partial class UserPageModel : ObservableObject
     private readonly DatabaseManager manager;
     [ObservableProperty] private ObservableCollection<UserModel> userList;
 
+    #region create user propertys
+    [ObservableProperty] private string firstnameField;
+    [ObservableProperty] private string surnameField;
+    [ObservableProperty] private float dailyworktimeField;
+    [ObservableProperty] private int vacationsField;
+    [ObservableProperty] private byte[] signaturField;
+    #endregion
+
 
     public UserPageModel(DatabaseManager db)
     {
-        UserList = new ObservableCollection<UserModel>();
-        UserList.Add(new UserModel() {Id=Guid.NewGuid(), Name="testvorname"});
-        UserList.Add(new UserModel() {Id=Guid.NewGuid(), Name="testvorname2"});
-        UserList.Add(new UserModel() {Id=Guid.NewGuid(), Name="testvorname3"});
         manager = db;
+        OnLoadData();
+    }
+    private async void OnLoadData()
+    {
+        UserList = new ObservableCollection<UserModel>(await manager.OnGetUserlist());
     }
 
     [RelayCommand]
@@ -42,7 +51,68 @@ public partial class UserPageModel : ObservableObject
             //user aus der DB entfernen
 
             //liste aktualisieren
-            UserList.Remove(user);
+            //UserList.Remove(user);
+        }
+    }
+    [RelayCommand]
+    private async void OnButtonSearchSignatur()
+    {
+        var result = await MediaPicker.PickPhotoAsync();
+
+        if(result != null)
+        {
+            var stream = await result.OpenReadAsync();
+
+            byte[] imageBytes;
+
+            using(var memoryStream = new MemoryStream())
+            {
+                await stream.CopyToAsync(memoryStream);
+                imageBytes = memoryStream.ToArray();
+            }
+
+            SignaturField = imageBytes;
+        }
+    }
+
+    [RelayCommand]
+    private async void OnButtonSaveNewUser()
+    {
+        if(string.IsNullOrEmpty(FirstnameField))
+        {
+            await Shell.Current.DisplayAlert("Fehler","Bitte gebe einen Vornamen ein...!","Ok");
+            return;
+        }
+        if(string.IsNullOrEmpty(SurnameField))
+        {
+            await Shell.Current.DisplayAlert("Fehler", "Bitte gebe einen Nachnamen ein...!","Ok");
+            return;
+        }
+        if(DailyworktimeField <= 0)
+        {
+            await Shell.Current.DisplayAlert("Fehler", "Bitte gebe die Arbeitszeit am Tag an...!","Ok");
+            return;
+        }
+        if(VacationsField <= 0)
+        {
+            await Shell.Current.DisplayAlert("Fehler", "Bitte gebe die Anzahl von Urlaubstagen an...!","Ok");
+            return;
+        }
+        //Unterschrift muss nicht gefüllt sein
+
+        UserModel newUser = new UserModel
+        {
+            Id = Guid.NewGuid(),
+            Firstname = FirstnameField,
+            Surname = SurnameField,
+            WorkTimeDaily = DailyworktimeField,
+            VacationDays = VacationsField,
+            SignPath = SignaturField
+        };
+
+        if(await manager.OnCreateUser(newUser))
+        {
+            UserList.Add(newUser);
         }
     }
 }

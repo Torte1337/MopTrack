@@ -9,6 +9,7 @@ public class UserModel
     public Guid Id { get; set; }
     public string Firstname { get; set; }
     public string Surname { get; set; }
-    public string SignPath { get; set; }
-    
+    public byte[] SignPath { get; set; }
+    public float WorkTimeDaily { get; set; }
+    public int VacationDays { get; set; }
 }

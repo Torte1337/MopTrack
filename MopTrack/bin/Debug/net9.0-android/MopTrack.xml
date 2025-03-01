@@ -4,6 +4,111 @@
         <name>MopTrack</name>
     </assembly>
     <members>
+        <member name="M:MopTrack.Manager.DatabaseManager.OnGetUserlist">
+            <summary>
+            Methode lädt die Userliste aus der Datenbank
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MopTrack.Manager.DatabaseManager.OnCreateUser(MopTrack.Model.UserModel)">
+            <summary>
+            Methode legt einen neuen User in der Datenbank an
+            </summary>
+            <param name="newUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MopTrack.Manager.DatabaseManager.OnEditUser(MopTrack.Model.UserModel)">
+            <summary>
+            Methode bearbeitet einen User in der Datenbank
+            </summary>
+            <param name="editUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MopTrack.Manager.DatabaseManager.OnDeleteUser(MopTrack.Model.UserModel)">
+            <summary>
+            Methode löscht einen User aus der Datenbank
+            </summary>
+            <param name="deleteUser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MopTrack.Manager.DatabaseManager.OnGetAllWorkitems">
+            <summary>
+            Methode lädt alle Workitems aus der Datenbank
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MopTrack.Manager.DatabaseManager.OnGetWorkItemsFromDay(System.DateTime)">
+            <summary>
+            Methode lädt nur die Workitems, die von diesem Tag sind
+            </summary>
+            <param name="selectedDate"></param>
+            <returns></returns>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.User">
+            <summary>
+            Property gibt an ->Name des ausgewählten Benutzers
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.Description">
+            <summary>
+            Property gibt an -> Beschreibung des WorkItems
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.Object">
+            <summary>
+            Property gibt an, welches Objekt ausgewählt wurde
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.Type">
+            <summary>
+            Property gibt an -> welcher Typ das ist (Pause, Arbeitszeit, Fahrzeit, Urlaub, Feiertag)
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.CleanType">
+            <summary>
+            Property gibt an -> welcher Reinigungstyp es ist (Unterhaltsreinigung oder Grundreinigung (UR/GR))
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.Date">
+            <summary>
+            Property gibt an -> an welchem Datum das war (muss angegeben werden)
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.From">
+            <summary>
+            Property gibt an -> Wann das Item anfing (pflichtangabe)
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.To">
+            <summary>
+            Property gibt an -> Wann das Item beendet wurde (pflichtangabe)
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.Result">
+            <summary>
+            Property gibt an -> die Gesamtzeit (von - bis)
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.Holiday">
+            <summary>
+            Property gibt an -> ob Frei durch Feiertag
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.Vacation">
+            <summary>
+            Property gibt an -> ob frei durch Urlaub
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.WorkItemTitle">
+            <summary>
+            Property gibt an -> den Titel des Workitems
+            </summary>
+        </member>
+        <member name="P:MopTrack.Model.WorkItemModel.Notice">
+            <summary>
+            Property gibt an -> die Notiz die man bei jedem Workitem hinterlegen kann
+            </summary>
+        </member>
         <member name="T:MopTrack.PageModel.SettingsPageModel">
             <inheritdoc/>
             <inheritdoc/>
@@ -32,15 +137,32 @@
             <summary>The backing field for <see cref="P:MopTrack.PageModel.SettingsPageModel.ButtonUserManagementCommand"/>.</summary>
         </member>
         <member name="P:MopTrack.PageModel.SettingsPageModel.ButtonUserManagementCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:MopTrack.PageModel.SettingsPageModel.OnButtonUserManagement"/>.</summary>
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:MopTrack.PageModel.SettingsPageModel.OnButtonUserManagement"/>.</summary>
         </member>
         <member name="T:MopTrack.PageModel.UserPageModel">
+            <inheritdoc/>
+            <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
         </member>
         <member name="P:MopTrack.PageModel.UserPageModel.UserList">
             <inheritdoc cref="F:MopTrack.PageModel.UserPageModel.userList"/>
+        </member>
+        <member name="P:MopTrack.PageModel.UserPageModel.FirstnameField">
+            <inheritdoc cref="F:MopTrack.PageModel.UserPageModel.firstnameField"/>
+        </member>
+        <member name="P:MopTrack.PageModel.UserPageModel.SurnameField">
+            <inheritdoc cref="F:MopTrack.PageModel.UserPageModel.surnameField"/>
+        </member>
+        <member name="P:MopTrack.PageModel.UserPageModel.DailyworktimeField">
+            <inheritdoc cref="F:MopTrack.PageModel.UserPageModel.dailyworktimeField"/>
+        </member>
+        <member name="P:MopTrack.PageModel.UserPageModel.VacationsField">
+            <inheritdoc cref="F:MopTrack.PageModel.UserPageModel.vacationsField"/>
+        </member>
+        <member name="P:MopTrack.PageModel.UserPageModel.SignaturField">
+            <inheritdoc cref="F:MopTrack.PageModel.UserPageModel.signaturField"/>
         </member>
         <member name="F:MopTrack.PageModel.UserPageModel.buttonEditUserCommand">
             <summary>The backing field for <see cref="P:MopTrack.PageModel.UserPageModel.ButtonEditUserCommand"/>.</summary>
@@ -53,6 +175,18 @@
         </member>
         <member name="P:MopTrack.PageModel.UserPageModel.ButtonDeleteUserCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:MopTrack.PageModel.UserPageModel.OnButtonDeleteUser(MopTrack.Model.UserModel)"/>.</summary>
+        </member>
+        <member name="F:MopTrack.PageModel.UserPageModel.buttonSearchSignaturCommand">
+            <summary>The backing field for <see cref="P:MopTrack.PageModel.UserPageModel.ButtonSearchSignaturCommand"/>.</summary>
+        </member>
+        <member name="P:MopTrack.PageModel.UserPageModel.ButtonSearchSignaturCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:MopTrack.PageModel.UserPageModel.OnButtonSearchSignatur"/>.</summary>
+        </member>
+        <member name="F:MopTrack.PageModel.UserPageModel.buttonSaveNewUserCommand">
+            <summary>The backing field for <see cref="P:MopTrack.PageModel.UserPageModel.ButtonSaveNewUserCommand"/>.</summary>
+        </member>
+        <member name="P:MopTrack.PageModel.UserPageModel.ButtonSaveNewUserCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:MopTrack.PageModel.UserPageModel.OnButtonSaveNewUser"/>.</summary>
         </member>
         <member name="T:MopTrack.Resource">
             <summary>
@@ -189,6 +323,21 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.UserList">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "UserList" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FirstnameField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FirstnameField" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SurnameField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SurnameField" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.DailyworktimeField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "DailyworktimeField" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.VacationsField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "VacationsField" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SignaturField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SignaturField" generated properties.</summary>
+        </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
             <summary>
             A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
@@ -197,6 +346,21 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.UserList">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "UserList" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FirstnameField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FirstnameField" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SurnameField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SurnameField" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.DailyworktimeField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "DailyworktimeField" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.VacationsField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "VacationsField" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SignaturField">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SignaturField" generated properties.</summary>
         </member>
     </members>
 </doc>

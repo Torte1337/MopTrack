@@ -10,10 +10,10 @@ public class DatabaseManager
     private readonly MTContext ctx;
     public DatabaseManager(MTContext _mt)
     {
-        ctx = _mt;
-        OnCheck();
+        if(ctx == null)
+            ctx = _mt;
     }
-    private async void OnCheck()
+    public async Task OnCheck()
     {
         await OnCheckDatabaseExist();
     }
@@ -30,7 +30,6 @@ public class DatabaseManager
             return false;
         }
     }
-
 
 
 #region User
@@ -59,12 +58,8 @@ public class DatabaseManager
     {
         try
         {
-            var userExist = ctx.users.FirstOrDefaultAsync(x => x.Id == newUser.Id);
-
-            if(userExist == null)
-                await ctx.users.AddAsync(newUser);
-            else
-                return false;
+            await ctx.users.AddAsync(newUser);
+            await ctx.SaveChangesAsync();
 
             return true;
         }
@@ -86,7 +81,7 @@ public class DatabaseManager
             var userExist = await ctx.users.FirstOrDefaultAsync(x => x.Id == editUser.Id);
             
             if(userExist != null)
-                userExist.Name = editUser.Name;
+                userExist = editUser;
             else
                 return false;
 
@@ -124,6 +119,46 @@ public class DatabaseManager
     }
 #endregion
 
+#region Workitems
+    /// <summary>
+    /// Methode lädt alle Workitems aus der Datenbank
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<WorkItemModel>> OnGetAllWorkitems()
+    {
+        try
+        {
+            return await ctx.workitems.ToListAsync();
+        }
+        catch(Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Fehler", ex.Message,"Ok");
+            return null;
+        }
+    }
+    /// <summary>
+    /// Methode lädt nur die Workitems, die von diesem Tag sind
+    /// </summary>
+    /// <param name="selectedDate"></param>
+    /// <returns></returns>
+    public async Task<List<WorkItemModel>> OnGetWorkItemsFromDay(DateTime selectedDate)
+    {
+        try
+        {
+            return null;
+            //var itemList = await ctx.workitems.Where(x => x.)
+        }
+        catch(Exception ex)
+        {
+            return null;
+        }
+    }
+
+
+
+
+
+#endregion
 
 
 

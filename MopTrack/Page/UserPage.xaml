@@ -15,37 +15,40 @@
         <Border WidthRequest="400"
                 StrokeShape="RoundRectangle 20,20,20,20"
                 BackgroundColor="#00ADFF"
-                HeightRequest="400"
                 x:DataType="pm:UserPageModel">
 
 
-            <ListView ItemsSource="{Binding UserList}"
-                RowHeight="50">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:UserModel">
-                        <ViewCell>
-                            <Grid Padding="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                <ListView ItemsSource="{Binding UserList}"
+                    Margin="20"
+                    RowHeight="50">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:UserModel">
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Label Grid.Column="0" Text="{Binding Firstname}" VerticalOptions="Center"/>
-                                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="10">
-                                    <Button Text="E" HeightRequest="35" BackgroundColor="#FFFFD000" 
-                                        CommandParameter="{Binding .}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type pm:UserPageModel}}, Path=ButtonEditUserCommand}"/>
-                                    <Button Text="D" HeightRequest="35" BackgroundColor="IndianRed"
-                                        CommandParameter="{Binding .}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type pm:UserPageModel}}, Path=ButtonDeleteUserCommand}"/>
-                                </HorizontalStackLayout>
+                                    <Label Grid.Column="0" Text="{Binding Firstname}" VerticalOptions="Center"/>
+                                    <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="10">
+                                        <Button Text="E" HeightRequest="35" BackgroundColor="#FFFFD000" 
+                                            CommandParameter="{Binding .}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type pm:UserPageModel}}, Path=ButtonEditUserCommand}"/>
+                                        <Button Text="D" HeightRequest="35" BackgroundColor="IndianRed"
+                                            CommandParameter="{Binding .}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type pm:UserPageModel}}, Path=ButtonDeleteUserCommand}"/>
+                                    </HorizontalStackLayout>
 
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
         </Border>
+        
+        <views:CreateUserView/>
 
     </VerticalStackLayout>
 </ContentPage>
