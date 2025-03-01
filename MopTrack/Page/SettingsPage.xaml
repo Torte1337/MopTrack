@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MopTrack.Page.SettingsPage"
+             xmlns:pm="clr-namespace:MopTrack.PageModel"
+             Title="">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="1" 
+            StrokeShape="RoundRectangle 20,20,20,20"
+            WidthRequest="400"
+            HeightRequest="500"
+            BackgroundColor="#00ADFF">
+
+
+            <VerticalStackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="10"
+                                 x:DataType="pm:SettingsPageModel">
+
+
+<!-- Database Area -->
+                <VerticalStackLayout Spacing="10" WidthRequest="200">
+                    <Label Text="Datenbank" 
+                        FontAttributes="Bold" 
+                        FontSize="25" 
+                        FontFamily="" 
+                        TextDecorations="Underline"
+                        HorizontalOptions="Center"/>
+                    <Button Text="Exportieren" BackgroundColor="#001925" Command="{Binding ButtonExportDatabaseCommand}"/>
+                    <Button Text="Importieren" BackgroundColor="#001925" Command="{Binding ButtonImportDatabaseCommand}"/>
+                    <Button Text="Zurücksetzen" BackgroundColor="#001925" Command="{Binding ButtonResetDatabaseCommand}"/>
+                </VerticalStackLayout>
+
+<!-- User Area -->
+                <VerticalStackLayout Spacing="10" WidthRequest="200">
+                    <Label Text="Benutzer" 
+                        FontAttributes="Bold" 
+                        FontSize="25" 
+                        FontFamily="" 
+                        TextDecorations="Underline"
+                        HorizontalOptions="Center"/>
+                    <Button Text="Benutzermanagement" BackgroundColor="#001925" Command="{Binding ButtonUserManagementCommand}"/>
+                </VerticalStackLayout>
+
+
+           
+            </VerticalStackLayout>
+        </Border>
+
+         <Label Grid.Row="2" Text="© 2025 Torsten Fergens. Alle Rechte vorbehalten." TextColor="#FF979797" FontSize="12" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+
+
+    </Grid>
+</ContentPage>

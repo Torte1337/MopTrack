@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MopTrack.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:MopTrack.Page"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarBackgroundColor="WhiteSmoke"
+    Title="MopTrack">
+
+
+
+<TabBar>
+    <Tab Title="Übersicht" Route="OverviewPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:OverviewPage}"/>
+    </Tab>
+    <Tab Title="Tracken" Route="TrackingPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:TrackingPage}"/>
+    </Tab>
+    <Tab Title="Objekte" Route="ObjectPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:ObjectPage}"/>
+    </Tab>
+    <!-- <Tab Title="Export" Route="ExportPae">
+        <ShellContent ContentTemplate="{DataTemplate pages:ExportPage}"/>
+    </Tab> -->
+    <Tab Title="Einstellungen" Route="SettingsPage">
+        <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+    </Tab>
+</TabBar>
+
+<ShellContent Route="UserPage" ContentTemplate="{DataTemplate pages:UserPage}"/>
+
+
+
+</Shell>
